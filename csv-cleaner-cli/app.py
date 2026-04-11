@@ -4,11 +4,17 @@ import sys #gives python system access, extra variables
 #Determine total number of command-line arguments, including the script name. 
 #Exit if the script is the only argument passed.
 if len(sys.argv) < 2:
-    print("Usage: python app.py <input_file>")
+    print("Usage: python app.py <input_file> [output_file]")
     sys.exit(1)
 
 #Capture filename or path being passed
 input_file = sys.argv[1]
+
+# Optional output file
+if len(sys.argv) >= 3:
+   output_file = sys.argv[2]
+else:
+   output_file = "cleaned_" + input_file
 
 # Attempt to read the file, if none present error & exit application
 try:
@@ -17,7 +23,7 @@ except Exception as e:
     print(f"Error reading file: {e}")
     sys.exit(1)
 
-#Print first N rows of original data
+#Print first N (default 10) rows of original data
 print("Original data:")
 print(df.head())
 
