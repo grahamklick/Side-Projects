@@ -1,0 +1,10 @@
+# Python
+__pycache__/ # Generates folder to store compiled bytecode
+*.pyc # Compiled bytecode files that speed up program load times
+
+# Output Files
+csv-cleaner/cleaned_data.csv
+
+# OS Files
+.DR_Store
+Thumbs.db
