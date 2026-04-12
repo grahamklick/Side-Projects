@@ -3,14 +3,26 @@ import pandas as pd
 
 conn = sqlite3.connect("sales.db") #connects to databased
 
-query = """
-SELECT product, SUM(amount) AS total_sales
-FROM sales
-GROUP BY product
-ORDER BY total_sales DESC
-"""
+product_filter = input("Enter product name to filter (or press Enter for all): ")
 
-df = pd.read_sql_query (query, conn)
+if product_filter:
+    query = """
+    SELECT PRODUCT, SUM(amount) AS total_sales
+    FROM sales
+    WHERE product = ?
+    GROUP BY product
+    ORDER BY total_sales DESC
+    """
+    df = pd.read_sql_query(query, conn, params=(product_filter,))
+else:
+    query = """
+    SELECT product, SUM(amount) AS total_sales
+    FROM sales
+    GROUP BY product
+    ORDER BY total_sales DESC
+    """
+    df = pd.read_sql_query (query, conn)
+    
 print(df)
 
 df.to_csv("sales_report.csv", index=False)
