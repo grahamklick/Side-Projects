@@ -2,8 +2,13 @@
 __pycache__/ # Generates folder to store compiled bytecode
 *.pyc # Compiled bytecode files that speed up program load times
 
-# Output Files
+# CSV cleaner files
 csv-cleaner/cleaned_data.csv
+
+# Data pipeline files
+data-pipeline-mini/cleaned_sales.csv
+data-pipeline-mini/pipeline.db
+data-pipeline-mini/pipeline_report.csv
 
 # OS Files
 .DR_Store
