@@ -3,7 +3,6 @@ import sys #gives python system access, extra variables
 import os #allows scripts to interact directly with operating system
 from cleaner.processor import load_csv, clean_data, save_csv #import
 
-
 #Define overall function to utilize processor.py, app.py
 def main():
     if len(sys.argv) < 2:
@@ -27,7 +26,12 @@ def main():
     print("Original data:")
     print(df.head())
 
-    cleaned_df = clean_data(df)
+    cleaned_df, metrics = clean_data(df)
+    print("\nCleaning summary:")
+    print(f"Original rows: {metrics['original_rows']}")
+    print(f"Duplicates removed: {metrics['duplicates_removed']}")
+    print(f"Rows with missing values removed: {metrics['rows_with_missing_removed']}")
+    print(f"Final rows: {metrics['final_rows']}")
     save_csv(cleaned_df, output_file)
 
     print(f"\nCleaned file saved as {output_file}")
