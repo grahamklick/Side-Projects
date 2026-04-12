@@ -1,20 +1,41 @@
-# \# Side-Projects
+# Graham Klick – Side Projects
 
-This repository contains personal projects focused on learning Python, data engineering, and backend development.
+This repository contains personal projects focused on Python, data processing, and early-stage data engineering concepts.
 
+## About Me
+- Product Manager with hands-on SQL experience
+- Transitioning into Data Engineering / technical roles
+- Focused on building real-world data projects
 
+## Projects ##
 
-\## Projects
+### Data Pipeline Mini
+End-to-end data pipeline:
+- Reads raw CSV data
+- Cleans and transforms with pandas
+- Loads into SQLite
+- Runs SQL queries to generate reports
 
+Tech: Python, pandas, SQLite
 
+### SQL + Python Reporting
+- Connects to SQLite database
+- Runs parameterized SQL queries
+- Exports results to CSV
 
-\### python-basics
+Tech:Python, SQL, pandas
 
-&#x20;- Simple python scripts and exercises
+### 🟡 CSV Cleaner CLI Tool
+- Command-line tool for cleaning CSV files
+- Removes duplicates and missing values
+- Supports dynamic input/output files
 
-&#x20;- Includes: hello world as first repo push, basic syntax, small experiments
+Tech: Python, pandas
 
+### 🟡 Python Basics
+- Simple scripts and early exercises
 
-
-More to come!
-
+## Next Steps
+- Expand pipeline to handle larger datasets
+- Introduce scheduling and automation
+- Add cloud-based data storage (AWS / GCP)
