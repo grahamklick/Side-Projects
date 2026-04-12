@@ -1,12 +1,9 @@
 import pandas as pd
 
-#sample raw data
-df = pd.DataFrame({
-    "customer": ["Alice", "Bob", "Bob", None, "Eve"],
-    "product": ["Laptop", "Mouse", "Mouse", "Keyboard", "Monitor"],
-    "amount": [1200, 25, 25, 75, None]
-    })
+#replaced prior sample data with data from external csv
+df = pd.read_csv("raw_sales.csv")
 
+#display initial data
 print("Raw data:")
 print(df)
 
@@ -14,6 +11,7 @@ print(df)
 df = df.drop_duplicates()
 df = df.dropna()
 
+#display cleaned data
 print("\nCleaned data:")
 print(df)
 
