@@ -22,9 +22,14 @@ else:
     ORDER BY total_sales DESC
     """
     df = pd.read_sql_query (query, conn)
-    
+
+print("\nQuery Results:")    
 print(df)
 
+print(f"\nRows returned: {len(df)}")
+
 df.to_csv("sales_report.csv", index=False)
+
+print("\nReport saved as sales_report.csv")
 
 conn.close()
