@@ -25,14 +25,14 @@ Tech: Python, pandas, SQLite
 
 Tech:Python, SQL, pandas
 
-### 🟡 CSV Cleaner CLI Tool
+### CSV Cleaner CLI Tool
 - Command-line tool for cleaning CSV files
 - Removes duplicates and missing values
 - Supports dynamic input/output files
 
 Tech: Python, pandas
 
-### 🟡 Python Basics
+### Python Basics
 - Simple scripts and early exercises
 
 ## Next Steps
