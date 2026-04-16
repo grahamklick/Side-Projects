@@ -30,5 +30,5 @@ print("\nCleaned data:")
 print(df)
 
 #save cleansed output
-df.to_csv("cleaned_sales.csv", index=False)  #index=False restricts column/row numbers from being in output
+df.to_csv(output_file, index=False)  #index=False restricts column/row numbers from being in output
 print("\nSaved cleaned_sales.csv")
