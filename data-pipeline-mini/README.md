@@ -12,10 +12,11 @@ A simple end-to-end data pipeline project built with Python, pandas, and SQLite.
 ## Files
  - raw_sales.csv - raw input data
  - extract_transform.py - reads and cleans the raw CSV
- - cleaned_sales.csv - cleaned intermediate data
  - load_db.py - loads cleaned CSV data into SQLite
- - pipeline.db - SQLite database
  - report.py - queries the SQLite database and exports a report
+ - run_pipeline.py - runs the full pipeline end-to-end
+ - cleaned_sales.csv or custom output - cleaned intermediate data
+ - pipeline.db - SQLite database
  - pipeline_report.csv - final report output
 
 ## Tools Used
@@ -24,6 +25,8 @@ A simple end-to-end data pipeline project built with Python, pandas, and SQLite.
  - SQLite
 
 ## How to Run
- python extract_transform.py
- python load_db.py
- python report.py
+python run_pipeline.py raw_sales.csv
+or, manually:
+python extract_transform.py raw_sales.csv
+python load_db.py cleaned_raw_sales.csv
+python report.py pipeline.db
