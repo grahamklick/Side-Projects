@@ -1,0 +1,6 @@
+customer_name,product_name,total_quantity,total_spent
+Alice,Laptop,1,1200.0
+Charlie,Monitor,2,600.0
+Bob,Keyboard,1,75.0
+Alice,Mouse,2,50.0
+Bob,Mouse,1,25.0
