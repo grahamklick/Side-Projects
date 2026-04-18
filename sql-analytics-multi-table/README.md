@@ -38,3 +38,11 @@ This project includes examples of joined SQL reports such as:
  - add logging
  - add validation checks before loading
  - add unit tests
+
+ # Usage Examples
+ Run default report:
+  - python report.py
+ Run a specific report:
+  - python report.py --report orders_with_customers
+ Export report to CSV
+  - python report.py --report full_order_detail --output reports/full_order_detail.csv

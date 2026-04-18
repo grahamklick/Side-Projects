@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS orders(
     customer_id INTEGER,
     product_id INTEGER,
     quantity INTEGER,
+    order_date TEXT,
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 )

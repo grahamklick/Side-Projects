@@ -1,48 +1,103 @@
+import argparse #enables creating CLIs
+import csv #light-weight version of pandas for using csv files
 import sqlite3
-import pandas as pd
+from pathlib import Path #allows for oop
 
-conn = sqlite3.connect("analytics.db")
+DB_FILE = "analytics.db"
 
-#Report #1 - customer & product detail
-query_1 = """
-SELECT
-    c.customer_name,
-    p.product_name,
-    SUM(o.quantity) AS total_quantity,
-    SUM(o.quantity * p.price) AS total_spent
-FROM orders o
-JOIN customer c ON o.customer_id = c.customer_id
-JOIN products p ON o.product_id = p.product_id
-GROUP BY c.customer_name, p.product_name
-ORDER BY total_spent DESC
-"""
+REPORT_QUERIES = {
+    "orders_with_customers": """
+       SELECT
+           o.order_id,
+           c.cusotmer_name,
+           o.order_date,
+           o.quantity
+        FROM orders o
+        JOIN customer c
+            ON o.customer_id = c.customer_id
+        ORDER BY o.order_id    
+    """,
+    "orders_with_products": """
+        SELECT
+            o.order_id,
+            p.product_name,
+            p.category,
+            o.quantity,
+            o.oder_date
+        FROM orders o
+        JOIN products p
+            ON o.product_id = p.product_id
+        ORDER BY o.order_id
+    """,
+        "full_order_details": """
+        SELECT
+            o.order_id,
+            c.customer_name,
+            p.product_name,
+            o.quantity,
+            o.order_date
+        FROM orders o
+        JOIN customer c
+            ON o.customer_id = c.customer_id
+        JOIN products p
+            ON o.product_id = p.product_id
+        ORDER BY o.order_id
+    """
+}
 
-df_detail = pd.read_sql_query(query_1, conn)
+def run_query(query: str):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    
+    cursor.execute(query)
+    rows = cursor.fetchall() #retrieve all records from query result
+    headers = [description[0] for description in cursor.description] #retrieve column names
+    
+    conn.close()
+    return headers, rows
 
-print("Customer Purchase Detail Report:")
-print(df_detail)
+def print_report(headers, rows):
+    print(" | ".join(headers)) #takes headers, created single formatted string pipe delimited - creates clean, column separated output
+    print("-" * 60) #will print 60 hyphens to create a line
+    
+    for row in rows:
+        print (" | ".join(str(value) for value in row))
+        
+def export_to_csv(headers, rows, output_file):
+    output_path = Path(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True) #create file folder to store report output
+    
+    with open(output_path, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(headers)
+        writer.writerows(rows)
+    
+    print(f"Report exported to {output_path}")
+    
+def main():
+    parser = argparse.ArgumentParser(description="Run SQL reports from the sales database.")
+    parser.add_argument(
+        "--report",
+        choices=REPORT_QUERIES.keys(),
+        default="full_order_details",
+        help="Select which report to run"
+        )
+    parser.add_argument(
+        "--output",
+        help="Optional path to export the report as CSV"
+        )
+    
+    args = parser.parse_args() #processes input provided by user in terminal
 
-df_detail.to_csv("customer_purchase_report.csv", index=False)
-print("\nSaved customer_purchase_report.csv")
+    query = REPORT_QUERIES[args.report]
+    headers, rows = run_query(query)
 
-#Report #2 - Total spend by Customer
-query_2 = """
-SELECT
-    c.customer_name,
-    SUM(o.quantity * p.price) AS total_spent
-FROM orders o
-JOIN customer c ON o.customer_id = c.customer_id
-JOIN products p ON o.product_id = p.product_id
-GROUP BY c.customer_name
-ORDER BY total_spent DESC
-"""
+    print_report(headers, rows)
 
-df_summary = pd.read_sql_query(query_2, conn)
+    if args.output:
+        export_to_csv(headers, rows, args.output)
+        
+if __name__ == "__main__":
+    main()
 
-print("Customer Spending Summary:")
-print(df_summary)
 
-df_summary.to_csv("customer_spending_summary.csv", index=False)
-print("\nSaved customer_spending_summary.csv")
-
-conn.close()

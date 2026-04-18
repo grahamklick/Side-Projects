@@ -35,15 +35,15 @@ cursor.executemany(
 
 #Insert Orders
 orders = [
-    (1, 1, 1, 1), # Alice bought 1 Laptop
-    (2, 1, 2, 2), # Alice bought 2 Laptop
-    (3, 2, 2, 1), # Bob bought 1 Laptop
-    (4, 2, 3, 1), # Bob bought 1 Laptop
-    (5, 3, 4, 2), # Charlie bought 2 Laptop
+    (1, 1, 1, 1, "2024-01-09"), # Alice bought 1 Laptop
+    (2, 1, 2, 2, "2024-03-11"), # Alice bought 2 Laptop
+    (3, 2, 2, 1, "2024-07-26"), # Bob bought 1 Laptop
+    (4, 2, 3, 1, "2024-02-03"), # Bob bought 1 Laptop
+    (5, 3, 4, 2, "2024-05-22"), # Charlie bought 2 Laptop
 ]
 
 cursor.executemany(
-    "INSERT INTO orders (order_id, customer_id, product_id, quantity) VALUES (?, ?, ?, ?)",
+    "INSERT INTO orders (order_id, customer_id, product_id, quantity, order_date) VALUES (?, ?, ?, ?, ?)",
     orders
 )
 
