@@ -1,15 +1,40 @@
 # Python
-__pycache__/ # Generates folder to store compiled bytecode
-*.pyc # Compiled bytecode files that speed up program load times
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
 
-# CSV cleaner files
-csv-cleaner/cleaned_data.csv
+# Virtual environments
+.venv/
+venv/
+env/
 
-# Data pipeline files
-data-pipeline-mini/cleaned_sales.csv
-data-pipeline-mini/pipeline.db
-data-pipeline-mini/pipeline_report.csv
+# Jupyter
+.ipynb_checkpoints/
 
-# OS Files
-.DR_Store
+# Environment / secrets
+.env
+.env.*
+
+# OS files
+.DS_Store
 Thumbs.db
+
+# Logs
+*.log
+
+# Databases (generated)
+*.db
+*.sqlite
+*.sqlite3
+
+# Build / output folders
+output/
+outputs/
+reports/
+exports/
+dist/
+build/
+
+# VS Code
+.vscode/
