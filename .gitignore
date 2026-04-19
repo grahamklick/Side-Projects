@@ -35,6 +35,7 @@ reports/
 exports/
 dist/
 build/
+data/*.json
 
 # VS Code
 .vscode/
