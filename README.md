@@ -1,4 +1,4 @@
-# Graham Klick – Side Projects
+# Graham Klick – Side Projects for Data Engineering
 
 This repository contains personal projects focused on Python, data processing, and early-stage data engineering concepts.
 
@@ -9,14 +9,26 @@ This repository contains personal projects focused on Python, data processing, a
 
 ## Projects ##
 
+### API Data Ingestion Pipeline
+ - Fetch data from public API
+ - Store raw JSON
+ - Transform nested data into structured format
+ - Export cleaned CSV
+ - Load into SQLite
+ - Run SQL-based reports with CLI
+ - Logging and error handling
+
+### SQL Analytics (Multi-Table)
+ - SQLite database with multiple related tables
+ - SQL joins and reporting
+ - CLI-based report generation and CSV export
+
 ### Data Pipeline Mini
 End-to-end data pipeline:
 - Reads raw CSV data
 - Cleans and transforms with pandas
 - Loads into SQLite
 - Runs SQL queries to generate reports
-
-Tech: Python, pandas, SQLite
 
 ### SQL + Python Reporting
 - Connects to SQLite database
