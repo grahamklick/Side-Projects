@@ -25,3 +25,8 @@ Install dependies: pip install requests pandas
  - city
  - zip
  - company name
+
+# Reporting
+ - run default report: python report.py
+ - run grouped by city: python report.py --report users_by_city
+ - export to a csv: python report.py --report company_list --output reports/company_list.csv
